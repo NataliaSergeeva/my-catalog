@@ -16,6 +16,7 @@
 
 h1, h2 {
     font-family: 'Lora';
+    font-size: 25pt;
 }
 
 p {
@@ -24,8 +25,11 @@ p {
 }
 
 .date {
+    font-family: 'Lora';
     color: #828282;
     align-items: center;
+    font-size: 12pt;
+    margin-top: 40px;
 }
 
 .save {
@@ -44,7 +48,7 @@ p {
 }
 
 .post {
-    margin-bottom: 70px;
+    margin-bottom: 20px;
 }
 
 .post h1 a, .post h1 a:visited {
@@ -56,7 +60,7 @@ p {
     margin: 20px 0px 20px 20px;
 }
 
-.comment_counter_in_post_list {
+.comment_counter_in_post_list a {
     color: #828282;
     font-family: 'Lora';
     font-size: 12pt;

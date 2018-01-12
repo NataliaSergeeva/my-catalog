@@ -6,11 +6,13 @@
         <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
         <link href="https://fonts.googleapis.com/css?family=Lora&subset=latin,cyrillic" rel="stylesheet" type="text/css">
         <link rel="stylesheet" href="{% static 'css/catalog.css' %}">
+
     </head>
     <body>
         <div class="page-header">
             {% if user.is_authenticated %}
                 <a href="{% url 'post_new' %}" class="top-menu"><span class="glyphicon glyphicon-plus"></span></a>
+                <a href="{% url 'post_draft_list' %}" class="top-menu"><span class="glyphicon glyphicon-edit"></span></a>
             {% endif %}
             <h1><a href="/">Catalog</a></h1>
         </div>
