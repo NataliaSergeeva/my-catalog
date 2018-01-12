@@ -55,3 +55,9 @@ p {
 .comment {
     margin: 20px 0px 20px 20px;
 }
+
+.comment_counter_in_post_list {
+    color: #828282;
+    font-family: 'Lora';
+    font-size: 12pt;
+}
