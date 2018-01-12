@@ -19,6 +19,10 @@ h1, h2 {
     font-size: 25pt;
 }
 
+h2 {
+    color: #707070;
+}
+
 p {
     font-family: 'Lora';
     font-size: 13pt;
