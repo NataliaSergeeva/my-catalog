@@ -1,7 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
 from .models import Post, Comment
 from .forms import PostForm, CommentForm
+from django.core.files import File
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
@@ -11,6 +14,7 @@ def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'catalog/post_detail.html', {'post': post})
 
+@login_required
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -23,6 +27,7 @@ def post_new(request):
         form = PostForm()
     return render(request, 'catalog/post_edit.html', {'form': form})
 
+@login_required
 def post_edit(request, pk):
     post = get_object_or_404(Post, pk=pk)
     if request.method == "POST":
@@ -50,27 +55,36 @@ def add_comment_to_post(request, pk):
         form = CommentForm()
     return render(request, 'catalog/add_comment_to_post.html', {'form': form})
 
+@login_required
 def comment_approve(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.approve()
     return redirect('post_detail', pk=comment.post.pk)
 
+@login_required
 def comment_remove(request, pk):
     comment = get_object_or_404(Comment, pk=pk)
     comment.delete()
     return redirect('post_detail', pk=comment.post.pk)
 
 
+@login_required
 def post_draft_list(request):
     posts = Post.objects.filter(published_date__isnull=True).order_by('created_date')
     return render(request, 'catalog/post_draft_list.html', {'posts': posts})
 
+@login_required
 def post_publish(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.publish()
     return redirect('post_detail', pk=pk)
 
+@login_required
 def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
+    return redirect('post_list')
+
+def logout(request):
+    logout()
     return redirect('post_list')

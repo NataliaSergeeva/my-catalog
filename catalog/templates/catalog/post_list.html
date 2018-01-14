@@ -7,10 +7,16 @@
                 {{ post.published_date }}
             </div>
             <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            {% if post.image %}
+                <img height="150" src="{{ MEDIA_URL }}{{ post.image.url }}" width="240">
+            {% endif %}
             <p>{{ post.text|truncatechars:200 }}</p>
         </div>
+        {% if post.post_file %}
+            <p><a href="{{ post.post_file.url }}">Приложение</a></p>
+        {% endif %}
         <div class="comment_counter_in_post_list">
-        <a href="{% url 'post_detail' pk=post.pk %}">Комментарии: {{ post.approved_comments.count }}</a>
+        <a href="{% url 'post_detail' pk=post.pk %}">Комментарии: {{ post.comments.count }}</a>
         <hr>
         </div>
     {% endfor %}

@@ -12,9 +12,18 @@
             </div>
         {% else %}
             <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Опубликовать</a>
+            <div class="date">
+                Дата создания: {{ post.created_date|date:'d.m.Y' }}
+            </div>
         {% endif %}
         <h1>{{ post.title }}</h1>
+        {% if post.image %}
+            <img height="150" src="{{ MEDIA_URL }}{{ post.image.url }}" width="240">
+        {% endif %}
         <p>{{ post.text|linebreaksbr }}</p>
+        {% if post.post_file %}
+            <p>Скачать файл: <a href="{{ post.post_file.url }}">{{ post.title }}</a></p>
+        {% endif %}
     </div>
 
     <hr>
