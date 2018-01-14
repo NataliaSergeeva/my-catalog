@@ -8,7 +8,7 @@ class Post(models.Model):
     text = models.TextField(verbose_name='Текст статьи')
     created_date = models.DateTimeField(default=timezone.now, verbose_name='Дата создания')
     published_date = models.DateTimeField(blank=True, null=True, verbose_name='Дата публикации')
-    image = models.ImageField(blank=True, upload_to='images/%Y/%m/%d', help_text='150x150px', verbose_name='Изображение')
+    image = models.ImageField(blank=True, upload_to='images/%Y/%m/%d', verbose_name='Изображение')
     post_file = models.FileField(blank=True, upload_to='files/%Y/%m/%d', verbose_name='Файл')
 
 
