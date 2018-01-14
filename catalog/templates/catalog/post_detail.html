@@ -18,7 +18,7 @@
         {% endif %}
         <h1>{{ post.title }}</h1>
         {% if post.image %}
-            <img height="150" src="{{ MEDIA_URL }}{{ post.image.url }}" width="240">
+            <img height="300" src="{{ MEDIA_URL }}{{ post.image.url }}" width="480">
         {% endif %}
         <p>{{ post.text|linebreaksbr }}</p>
         {% if post.post_file %}
