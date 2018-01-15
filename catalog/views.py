@@ -6,26 +6,26 @@ from .models import Post, Comment
 from .forms import PostForm, CommentForm
 from django.core.files import File
 
-#def post_list(request):
-#    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-#    return render(request, 'catalog/post_list.html', {'posts': posts})
-
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    kort = []
-    i = 1
-    row = []
-    for post in posts:
-        if i % 3 == 0:
-            row.append(post)
-            kort.append(tuple(row))
-            row = []
-        else:
-            row.append(post)
-            if i == len(posts):
-                kort.append(tuple(row))
-        i += 1
-    return render(request, 'catalog/post_list.html', locals())
+    return render(request, 'catalog/post_list.html', {'posts': posts})
+
+#def post_list(request):
+#    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+#    kort = []
+#    i = 1
+#    row = []
+#    for post1 in posts:
+#        if i % 3 == 0:
+#            row.append(post1)
+#            kort.append(tuple(row))
+#            row = []
+#        else:
+#            row.append(post1)
+#            if i == len(posts):
+#                kort.append(tuple(row))
+#        i += 1
+#    return render(request, 'catalog/post_list.html', locals())
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
