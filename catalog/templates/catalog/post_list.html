@@ -2,15 +2,14 @@
 {% load staticfiles %}
 
 {% block content %}
+    <br>
     {% for post in posts %}
         <div class="box">
             <div class="post">
                 {% if post.image %}
                     <img height="180" src="{{ MEDIA_URL }}{{ post.image.url }}" width="300">
                 {% endif %}
-                <div class="date">
-                    {{ post.published_date }}
-                </div>
+                <div id="date">{{ post.published_date }}</div>
                 <h3><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h3>
                 <p>{{ post.text|truncatechars:50 }}</p>
             </div>
@@ -19,7 +18,6 @@
             {% endif %}
             <div class="comment_counter_in_post_list">
             <a href="{% url 'post_detail' pk=post.pk %}">Комментарии: {{ post.comments.count }}</a>
-
             </div>
         </div>
     {% endfor %}
