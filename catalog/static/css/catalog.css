@@ -69,3 +69,8 @@ p {
     font-family: 'Lora';
     font-size: 12pt;
 }
+
+.span2 {
+    height: 50px;
+    width: 50px;
+}

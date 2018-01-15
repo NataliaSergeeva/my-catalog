@@ -6,9 +6,26 @@ from .models import Post, Comment
 from .forms import PostForm, CommentForm
 from django.core.files import File
 
+#def post_list(request):
+#    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
+#    return render(request, 'catalog/post_list.html', {'posts': posts})
+
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-    return render(request, 'catalog/post_list.html', {'posts': posts})
+    kort = []
+    i = 1
+    row = []
+    for post in posts:
+        if i % 3 == 0:
+            row.append(post)
+            kort.append(tuple(row))
+            row = []
+        else:
+            row.append(post)
+            if i == len(posts):
+                kort.append(tuple(row))
+        i += 1
+    return render(request, 'catalog/post_list.html', locals())
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
@@ -83,8 +100,4 @@ def post_publish(request, pk):
 def post_remove(request, pk):
     post = get_object_or_404(Post, pk=pk)
     post.delete()
-    return redirect('post_list')
-
-def logout(request):
-    logout()
     return redirect('post_list')
