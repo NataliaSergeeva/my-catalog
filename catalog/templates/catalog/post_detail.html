@@ -11,7 +11,7 @@
                 {{ post.published_date }}
             </div>
         {% else %}
-            <a class="btn btn-default" href="{% url 'post_publish' pk=post.pk %}">Опубликовать</a>
+            <a class="btn btn-default" id="publish-btn" href="{% url 'post_publish' pk=post.pk %}">Опубликовать</a>
             <div class="date">
                 Дата создания: {{ post.created_date|date:'d.m.Y' }}
             </div>

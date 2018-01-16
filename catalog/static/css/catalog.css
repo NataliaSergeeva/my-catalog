@@ -34,7 +34,7 @@ p {
 .head-menu {
     margin-top: 0;
     margin-bottom: 0;
-    padding: 1px 20px 20px 50px;
+    padding: 1px 20px 20px 70px;
 }
 
 .navbar {
@@ -120,4 +120,8 @@ h2 {
     color: #828282;
     font-family: 'Lora';
     font-size: 10pt;
+}
+
+#publish-btn {
+    line-height: 1.1;
 }
