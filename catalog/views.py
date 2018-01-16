@@ -10,23 +10,6 @@ def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
     return render(request, 'catalog/post_list.html', {'posts': posts})
 
-#def post_list(request):
-#    posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('-published_date')
-#    kort = []
-#    i = 1
-#    row = []
-#    for post1 in posts:
-#        if i % 3 == 0:
-#            row.append(post1)
-#            kort.append(tuple(row))
-#            row = []
-#        else:
-#            row.append(post1)
-#            if i == len(posts):
-#                kort.append(tuple(row))
-#        i += 1
-#    return render(request, 'catalog/post_list.html', locals())
-
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
     return render(request, 'catalog/post_detail.html', {'post': post})
@@ -71,6 +54,9 @@ def add_comment_to_post(request, pk):
     else:
         form = CommentForm()
     return render(request, 'catalog/add_comment_to_post.html', {'form': form})
+
+def contacts(request):
+    return render(request, 'catalog/contacts.html')
 
 @login_required
 def comment_approve(request, pk):
