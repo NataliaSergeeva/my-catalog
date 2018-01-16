@@ -51,6 +51,7 @@ p {
 .hello-user {
     float: right;
     padding-top: 10px;
+    padding-right: 12px;
     margin-bottom: 0;
 }
 
