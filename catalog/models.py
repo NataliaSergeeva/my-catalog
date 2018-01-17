@@ -26,7 +26,7 @@ class Post(models.Model):
 class Comment(models.Model):
     post = models.ForeignKey('catalog.Post', related_name='comments')
     author = models.CharField(max_length=20)
-    text = models.CharField(max_length=300)
+    text = models.CharField(max_length=250)
     created_date = models.DateTimeField(default=timezone.now)
     approved_comment = models.BooleanField(default=False)
 

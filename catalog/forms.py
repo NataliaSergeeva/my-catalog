@@ -8,8 +8,15 @@ class PostForm(forms.ModelForm):
         model = Post
         fields = ('title', 'text', 'image', 'post_file')
 
-class CommentForm(forms.ModelForm):
 
-    class Meta:
-        model = Comment
-        fields = ('author', 'text',)
+class CommentForm(forms.Form):
+
+    author_name = forms.CharField(
+        label="",
+        widget=forms.Textarea
+    )
+
+    comment_area = forms.CharField(
+        label="",
+        widget=forms.Textarea
+    )
