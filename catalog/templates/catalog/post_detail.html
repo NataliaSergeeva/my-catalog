@@ -29,16 +29,6 @@
     <br>
     <hr>
 
-    <h3 id="write_comment"><a onclick="return show_comments_form('write_comment')">Написать комментарий</a></h3>
-    <p>Введите свое имя и текст сообщения</p>
-    <form id="comment_form" action="{% url 'add_comment_to_post' pk=post.pk %}" method="post">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        {% buttons %}
-            <button type="submit" class="btn btn-primary">{% bootstrap_icon "comment" %}&nbsp;&nbsp;Комментировать</button>
-        {% endbuttons %}
-    </form>
-
     {% for comment in post.comments.all %}
         <div class="comment">
             <div class="date">
@@ -55,4 +45,25 @@
     {% empty %}
         <p>No comments here yet :(</p>
     {% endfor %}
+
+    {% if form %}
+        <h3 id="write_comment"><a onclick="return show_comments_form('write_comment')">Написать комментарий</a></h3>
+        <p>Введите свое имя и текст сообщения</p>
+        <form id="comment_form" action="{% url 'add_comment_to_post' pk=post.pk %}" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">{% bootstrap_icon "comment" %}&nbsp;&nbsp;Комментировать</button>
+            {% endbuttons %}
+        </form>
+    {% else %}
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <h3 class="panel-title">Комментарии</h3>
+            </div>
+            <div class="panel-body">
+                Комментарии недоступны.<br />
+            </div>
+        </div>
+    {% endif %}
 {% endblock %}
