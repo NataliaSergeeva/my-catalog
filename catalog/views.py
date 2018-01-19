@@ -22,20 +22,16 @@ class PostView(View):
         post = get_object_or_404(Post, pk=self.kwargs['pk'])
         context = {}
         context.update(csrf(request))
-        user = auth.get_user(request)
         context['comments'] = post.comments.all()
         context['post'] = post
-        if user.is_authenticated:
-            context['form'] = self.comment_form
+        context['form'] = self.comment_form
 
         return render(request, template_name=self.template_name, context=context)
 
 @require_http_methods(["POST"])
 def add_comment_to_post(request, pk):
-
     form = CommentForm(request.POST)
     post = get_object_or_404(Post, pk=pk)
-
     if form.is_valid():
         comment = Comment()
         comment.post_id = pk
